@@ -12,7 +12,7 @@
 // @license     Apache-2.0
 // ==/UserScript==
 
-// update       2024-11-15
+// updated      2024-11-15
 
 (function(){
     GM_addStyle(
