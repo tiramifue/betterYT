@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Youtube Black Mode
-// @version     3.5
+// @version     3.6
 // @author      tiramifue
 // @description Prettier youtube with red sub button and less rounded edges (BLACK EDITION)
 // @match       https://*.youtube.com/*
@@ -12,7 +12,7 @@
 // @license     Apache-2.0
 // ==/UserScript==
 
-// updated      2024-11-15
+// updated      2024-11-18
 
 (function(){
     GM_addStyle(
@@ -232,7 +232,7 @@ yt-icon-button.ytd-masthead:hover, ytd-topbar-menu-button-renderer.ytd-masthead:
 ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flexy {
     border-radius: 2px;
 }
-#page-manager > ytd-shorts, #masthead, #content, #card.yt-live-chat-viewer-engagement-message-renderer {
+#ONLY-FOR-BLACK-MODE, #page-manager > ytd-shorts, #masthead, #content, #card.yt-live-chat-viewer-engagement-message-renderer {
     background: #000;
 }
 .YtSearchboxComponentInputBox {
