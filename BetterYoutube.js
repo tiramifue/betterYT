@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Better Youtube
-// @version     3.6
+// @version     3.7
 // @author      tiramifue
 // @description Prettier youtube with red sub button and less rounded edges
 // @match       https://*.youtube.com/*
@@ -12,7 +12,7 @@
 // @license     Apache-2.0
 // ==/UserScript==
 
-// updated      2024-11-18
+// updated      2024-12-15
 
 (function(){
     GM_addStyle(
@@ -50,7 +50,7 @@ tp-yt-iron-dropdown.style-scope.ytd-popup-container {
     border-radius: 12px;
     box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.7);
 }
-.YtSearchboxComponentSuggestionsContainer {
+.YtSearchboxComponentSuggestionsContainer, .ytSearchboxComponentSuggestionsContainer {
     backdrop-filter: blur(90px);
     border: 1px solid rgb(255 255 255 / 10%);
     border-radius: 12px;
@@ -156,9 +156,6 @@ ytd-guide-entry-renderer[guide-refresh] #endpoint.yt-simple-endpoint.ytd-guide-e
 ytd-guide-entry-renderer[guide-refresh] yt-interaction.ytd-guide-entry-renderer {
     border-radius: 2px;
 }
-#search-clear-button > ytd-button-renderer > yt-button-shape > button {
-    margin-right: 6px;
-}
 .yt-spec-button-shape-next--size-s {
     border-radius: 2px;
 }
@@ -215,7 +212,7 @@ ytd-reel-video-renderer:not([enable-player-metadata-container]) .watch-while-eng
 yt-interaction.circular .fill.yt-interaction, yt-interaction.circular .stroke.yt-interaction {
     border-radius: 2px;
 }
-yt-icon-button.ytd-masthead:hover, ytd-topbar-menu-button-renderer.ytd-masthead:hover, ytd-notification-topbar-button-renderer.ytd-masthead:hover {
+yt-icon-button.ytd-masthead:hover, ytd-topbar-menu-button-renderer.ytd-masthead:hover, ytd-notification-topbar-button-renderer.ytd-masthead:hover, .ytSearchboxComponentClearButton:hover {
     border-radius: 2px;
 }
 #overlays > yt-thumbnail-overlay-badge-view-model {
@@ -224,11 +221,14 @@ yt-icon-button.ytd-masthead:hover, ytd-topbar-menu-button-renderer.ytd-masthead:
 ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flexy {
     border-radius: 2px;
 }
-.YtSearchboxComponentInputBox {
+.YtSearchboxComponentInputBox, .ytSearchboxComponentInputBox {
     border-radius: 2px 0 0 2px;
 }
-.YtSearchboxComponentSearchButton {
+.YtSearchboxComponentSearchButton, .ytSearchboxComponentSearchButton {
     border-radius: 0 2px 2px 0;
+}
+.ytSearchboxComponentClearButton {
+    margin-right: 6px;
 }
 `
     );
