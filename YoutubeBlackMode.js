@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Youtube Black Mode
-// @version     3.7
+// @version     3.8
 // @author      tiramifue
 // @description Prettier youtube with red sub button and less rounded edges (BLACK EDITION)
 // @match       https://*.youtube.com/*
@@ -10,9 +10,11 @@
 // @grant       GM_addStyle
 // @namespace   https://greasyfork.org/users/570213
 // @license     Apache-2.0
+// @downloadURL https://update.greasyfork.org/scripts/403881/Youtube%20Black%20Mode.user.js
+// @updateURL https://update.greasyfork.org/scripts/403881/Youtube%20Black%20Mode.meta.js
 // ==/UserScript==
 
-// updated      2024-12-15
+// updated      2025-04-20
 
 (function(){
     GM_addStyle(
@@ -27,45 +29,39 @@ html:not(.style-scope)[dark],:not(.style-scope)[dark]{
     --yt-spec-badge-chip-background:rgb(255 255 255 / 7%);
     --yt-spec-additive-background:rgb(255 255 255 / 7%);
     --yt-spec-menu-background:rgb(0 0 0 / 98%);
+    --yt-live-chat-banner-gradient-scrim: linear-gradient(rgba(0, 0, 0, 0.95), transparent);
+    --yt-live-chat-toast-background-color: #000;
+    scrollbar-color: rgb(60 60 60) transparent;
 }
-#ytp-id-18 {
-    background:rgb(0 0 0 / 98%);
-    border:1px solid rgb(255 255 255 / 10%);
-    box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.7);
-}
-div.sbdd_b {
-    backdrop-filter: blur(90px);
-}
-html[dark] div.sbsb_a {
-    background:rgb(0 0 0 / 80%);
-}
-div.sbfl_b {
-    background:transparent;
-    color:var(--yt-spec-text-primary);
-}
-li.gsfs {
-    color:var(--yt-spec-text-primary);
-}
-li.sbsb_d {
-    background:hsla(0, 0%, 100%, 0.08);
-}
-tp-yt-iron-dropdown.style-scope.ytd-popup-container {
+.YtSearchboxComponentSuggestionsContainer, .ytSearchboxComponentSuggestionsContainer, #ytp-id-18, .ytp-popup, tp-yt-iron-dropdown.style-scope.ytd-popup-container, tp-yt-iron-dropdown.style-scope.yt-live-chat-app, tp-yt-paper-dialog[modern] {
     backdrop-filter: blur(90px);
     border: 1px solid rgb(255 255 255 / 10%);
-    border-radius: 12px;
+    border-radius: 12px !important;
     box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.7);
+    background: rgb(0 0 0 / 80%) !important;
 }
-.YtSearchboxComponentSuggestionsContainer, .ytSearchboxComponentSuggestionsContainer {
+ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, ytd-simple-menu-header-renderer {
+    background: transparent;
+    backdrop-filter: none;
+}
+yt-live-chat-toast-renderer[is-showing-message] {
+    border-top: 1px solid rgb(255 255 255 / 10%);
+}
+yt-live-chat-banner-renderer {
     backdrop-filter: blur(90px);
     border: 1px solid rgb(255 255 255 / 10%);
-    border-radius: 12px;
     box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.7);
-    background:rgb(0 0 0 / 80%);
+    background: rgb(0 0 0 / 98%);
+    --yt-live-chat-primary-text-color: var(--yt-spec-text-primary);
 }
-#cinematics {
-    visibility: hidden;
+#card.yt-live-chat-viewer-engagement-message-renderer {
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 10%);
 }
-ytd-thumbnail[size=large] a.ytd-thumbnail, ytd-thumbnail[size=large]:before {
+.yt-spec-button-shape-next--mono-inverse.yt-spec-button-shape-next--text {
+    color: #f1f1f1;
+}
+ytd-thumbnail a.ytd-thumbnail, ytd-thumbnail:before {
     border-radius: 1px;
 }
 #thumbnail {
@@ -145,10 +141,7 @@ ytd-engagement-panel-section-list-renderer[dialog][target-id=engagement-panel-co
 #title-container.ytd-engagement-panel-title-header-renderer {
     max-width: 150px;
 }
-tp-yt-paper-dialog[modern] {
-    background: rgb(0 0 0 / 98%);
-    border: 1px solid rgb(255 255 255 / 10%);
-}
+
 tp-yt-iron-overlay-backdrop.opened {
     opacity: 0.6;
 }
@@ -226,11 +219,8 @@ yt-icon-button.ytd-masthead:hover, ytd-topbar-menu-button-renderer.ytd-masthead:
 #overlays > yt-thumbnail-overlay-badge-view-model {
     display: none;
 }
-ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flexy {
+ytd-watch-flexy[rounded-player] #ytd-player.ytd-watch-flexy {
     border-radius: 2px;
-}
-#ONLY-FOR-BLACK-MODE, #page-manager > ytd-shorts, #masthead, #content:not(.yt-live-chat-poll-choice), #card.yt-live-chat-viewer-engagement-message-renderer {
-    background: #000;
 }
 .YtSearchboxComponentInputBox, .ytSearchboxComponentInputBox {
     border-radius: 2px 0 0 2px;
@@ -240,6 +230,26 @@ ytd-watch-flexy[rounded-player-large][default-layout] #ytd-player.ytd-watch-flex
 }
 .ytSearchboxComponentClearButton {
     margin-right: 6px;
+}
+#chip-container.yt-chip-cloud-chip-renderer {
+    border-radius: 2px;
+}
+.ytVideoMetadataCarouselViewModelHost {
+    background: var(--yt-spec-badge-chip-background);
+    border-radius: 2px;
+}
+
+/* ONLY FOR BLACK MODE: */
+#cinematics {
+    visibility: hidden;
+}
+#page-manager > ytd-shorts {
+    background: #000;
+    margin-top: 0px;
+    padding-top: 8px;
+}
+#masthead {
+    background: #000;
 }
 `
     );
