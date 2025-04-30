@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Youtube Black Mode
-// @version     3.8
+// @version     3.9
 // @author      tiramifue
 // @description Prettier youtube with red sub button and less rounded edges (BLACK EDITION)
 // @match       https://*.youtube.com/*
@@ -14,7 +14,7 @@
 // @updateURL https://update.greasyfork.org/scripts/403881/Youtube%20Black%20Mode.meta.js
 // ==/UserScript==
 
-// updated      2025-04-20
+// updated      2025-04-30
 
 (function(){
     GM_addStyle(
@@ -40,7 +40,7 @@ html:not(.style-scope)[dark],:not(.style-scope)[dark]{
     box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.7);
     background: rgb(0 0 0 / 80%) !important;
 }
-ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, ytd-simple-menu-header-renderer {
+ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, ytd-simple-menu-header-renderer, .yt-contextual-sheet-layout-wiz, .yt-sheet-view-model-wiz--contextual {
     background: transparent;
     backdrop-filter: none;
 }
@@ -114,6 +114,9 @@ ytd-guide-entry-renderer[guide-refresh] {
     border-radius: 2px;
 }
 ytd-rich-metadata-renderer[rounded] {
+    border-radius: 2px;
+}
+.shortsLockupViewModelHostThumbnailContainerRounded {
     border-radius: 2px;
 }
 #tooltip {
